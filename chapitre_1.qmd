@@ -1,4 +1,4 @@
-
+je veux arriver à modifier ce programme, ça devient long. 
 # Première Modification dans RStudio !! Le logiciel libre et le code source ouvert {#sec-chap1}
 
 \begin{center}
