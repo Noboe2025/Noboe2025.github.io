@@ -1,0 +1,207 @@
+---
+title: "POL6078 - Projet de session : La mortalité migratoire à la frontière américano-mexicaine"
+author: "Noémie Boespflug"
+date: "Décembre 2025"
+output:
+  html_document:
+    theme: lumen
+    toc: true
+    toc_float: true
+  pdf_document:
+    toc: true
+---
+<style type="text/css">
+  .title, .author, .date {
+    text-align: center;}
+  p {
+    text-indent: 10px;
+    text-align: justify;
+  }
+</style>
+
+```{r setup, include=FALSE}
+# Configuration globale des chunks
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+library(knitr) 
+library(rmarkdown) 
+library(markdown)
+```
+
+# INTRODUCTION 
+La région des Amériques (qui comprend l'Amérique du Sud, l'Amérique centrale, l'Amérique du Nord et les Caraïbes) est caractérisée par des flux migratoires mortifères, notamment depuis l'arrêt du programme de l'USAID et de l'arrivée au pouvoir de Donald Trump, impactant les politiques frontalières états-uniennes, particulièrement cette dernière année. 
+
+L'une des routes migratoires irrégulières les plus connues dans la région est le corridor migratoire mésoaméricain, qui traverse l'Amérique centrale jusqu'aux États-Unis. Une fois arrivés au Mexique, les migrants empruntent généralement l'un des six principaux itinéraires : (1) l'itinéraire du sud-est, de Tenosique (Tabasco) à Tierra Blanca (Veracruz) ; (2) l'itinéraire du sud-ouest, de Tapachula (Chiapas) à Medias Aguas (Oaxaca) ; (3) l'itinéraire du centre, de Medias Aguas (Oaxaca) à Querétaro ; (4) l'itinéraire du nord-est, de Querétaro à Ciudad Acuña (Coahuila). (5) la route nord, de Querétaro à Ciudad Juárez (Chihuahua) ; et (6) la route nord-ouest, de Querétaro à Tijuana (Baja California).
+
+Le franchissement de la frontière entre le Mexique et les États-Unis présente des risques supplémentaires et spécifiques. La frontière américano-mexicaine s’étend sur 3 145 kilomètres et traverse des terrains difficiles, allant des zones urbaines aux déserts impénétrables. Environ 1 045 kilomètres de cette frontière sont gardés par une barrière physique, communément appelée le mur frontalier, qui sépare les deux pays. Les migrants qui tentent de passer aux États-Unis cherchent à éviter d’être repérés (et expulsés) par la police des frontières américaine, tant à la frontière même que dans la « zone des 160 kilomètres » qui s’étend vers le nord à l’intérieur des États-Unis et où se trouvent également des points de contrôle.
+
+Dans le cadre de ce projet de session, j'ai donc souhaité analyser la mortalité des migrants en Amérique du Nord et Centrale à l'aide de la base de données Missing Migrants Project (MMP) de l'OIM. Mes intérêts de recherche portant sur l'étude des conséquences des politiques publiques sur le secteur humanitaire et les populations vulnérables, ce sujet me permet d'appliquer une analyse de données approfondie (restructuration et croisement de variables) dans le cadre d'un cycle de recherche complet. Il m'intéressait beaucoup de comprendre si, suite à l'intensification des contrôles et des obstacles, le plus haut taux de mortalité à la frontière des Amériques était aujourd'hui au passage entre les Etats-Unis et le Mexique des Amériques, et quel facteur est la première cause de mortalité lors du passage frontalier (violences, causes environnemnentales, etc). 
+
+
+# REVUE DE LA LITTÉRATURE 
+
+Afin de diversifier les outils numériques utilisés, j'ai ouvert **Gemini** pour lui demander de formuler une possible question de recherche à partir de mes intérêts d'études et du jeu de données trouvé. Il m'a proposé la problématique suivante : *Dans quelle mesure l’intensification des politiques de dissuasion ont-elles conduit à un déplacement des incidents mortels et à une prédominance des décès liés à l’exposition et à la déshydratation sur la route migratoire Mexique-États-Unis après 2018?* 
+
+**Elicit** a eu le privilège de lire une telle interrogation, et de me proposer quelques références bibliographiques en lien avec ce questionnement. Suite à une vérification des sources sur **Google Scholar**, je les ai ajoutées à un nouveau dossier dans ma bibliographie **Zotero**.
+
+Ces quatre outils m'ont permis de rédiger une première revue de littérature (non-exhaustive, bien sûr, mais permettant un premier survole des enjeux concernant ce sujet ô combien complexe).
+
+
+### La militarisation des passages migratoires aux frontières états-uniennes
+
+La migration irrégulière dans les Amériques constitue un phénomène complexe et mortifère, particulièrement le long du corridor mésoaméricain qui relie l’Amérique centrale aux États-Unis. Depuis l’arrêt de certains programmes humanitaires, notamment celui de l’USAID, et l’arrivée au pouvoir de l’administration Trump, les politiques frontalières états-uniennes se sont considérablement durcies, intensifiant la militarisation et la surveillance des passages migratoires (Sarmiento, 2023 ; Obinna, 2025). Cette intensification, souvent conceptualisée sous l’angle de la « prevention through deterrence », vise à dissuader l’immigration irrégulière mais a eu pour conséquence le déplacement systématique des flux migratoires vers des zones plus dangereuses, notamment les déserts et les jungles frontalières (Passarelli-Araújo, 2025 ; Villalobos & Ramírez Arellano, 2019).
+
+### Les dangers des routes entre le Mexique et les Etats-Unis
+
+Les routes empruntées au Mexique vers les États-Unis sont variées, comprenant notamment six itinéraires principaux traversant le sud-est, le sud-ouest, le centre, le nord-est, le nord et le nord-ouest du pays. Ces parcours exposent les migrants à des risques environnementaux significatifs, tels que la chaleur extrême, la déshydratation et l’épuisement physique, mais également à la violence des organisations criminelles et à des conditions de traversée extrêmement difficiles (Hernandez & Edgar, 2024 ; Marroni & Meneses, 2006). La frontière américano-mexicaine, longue de 3 145 kilomètres et partiellement équipée d’une barrière physique, est ponctuée de zones urbaines et de terrains désertiques impénétrables, où les migrants sont contraints de franchir des secteurs isolés afin d’éviter la surveillance policière et les points de contrôle situés jusqu’à 160 kilomètres à l’intérieur du territoire américain.
+
+### Une augmentation de la mortalité migratoire dans la région d'Amérique centrale
+
+Les données existantes montrent une augmentation significative de la mortalité migratoire dans la région. Passarelli-Araújo (2025) rapporte que près de la moitié des 1 817 décès documentés en Amérique latine entre 2014 et 2022 se sont produits entre 2020 et 2022, signalant une accélération récente des décès. Au Nouveau-Mexique, Hernandez et Edgar (2024) observent une augmentation drastique des cas entre 2022 et 2023. Cette tendance coïncide avec l’application stricte des politiques de dissuasion, soulignant un lien temporel probable entre intensification des contrôles et mortalité accrue. La distribution des décès varie selon le type de route : les traversées maritimes sont dominées par la noyade, tandis que les routes de jungle et les passages désertiques présentent une prédominance des décès liés à l’exposition environnementale et à la violence. Sur le corridor Mexique-États-Unis, 41 % des décès au Nouveau-Mexique sont attribués à des causes environnementales, bien qu’un pourcentage substantiel reste non identifié, ce qui révèle d’importantes lacunes de documentation (Obinna, 2025 ; Villalobos & Ramírez Arellano, 2019).
+
+### Le rôle de l'environnement dans la mortalité
+
+Le rôle de l’environnement physique dans la mortalité est particulièrement saillant. Les migrants traversant le désert de Sonoran ou la vallée du Rio Grande sont confrontés à des températures extrêmes, à une pénurie d’eau et à des conditions qui augmentent le risque de déshydratation et d’épuisement. Les jungles du Darién Gap, de leur côté, exposent les migrants à un danger physique intense et à des violences multiples (Sarrut, 2025 ; Sarrut et al., 2023). Cette relation entre conditions environnementales et mortalité illustre l’interaction entre facteurs naturels et politiques, les premiers étant utilisés indirectement comme outils de dissuasion.
+
+### L'impact de la militarisation des frontières sur la mortalité migratoire
+
+L’analyse politique souligne également un déplacement systématique des routes migratoires. Les stratégies de maintien de l’ordre et la militarisation des frontières n’empêchent pas l’immigration mais poussent les migrants vers des itinéraires plus risqués (Sarmiento, 2021 ; Macías-Madero & Aguilar-Orihuela, 2025). Le programme « Quédate en México » ou les politiques de tolérance zéro ont transformé le Mexique en un « mur de confinement », obligeant les migrants à éviter les routes plus sûres et surveillées. Ce mécanisme de déplacement explique la prévalence des décès par exposition environnementale sur le corridor Mexique-États-Unis et suggère que les interventions politiques ont un impact direct sur les risques de mortalité.
+
+### La nécropolitique de la frontière Etats-Unis - Mexique
+
+Enfin, plusieurs auteurs interprètent ces décès sous l’angle de la nécropolitique, conceptualisant les migrants comme des « corps jetables » exposés structurellement à la mort en raison des politiques frontalières (Obinna, 2025 ; Villalobos & Ramírez Arellano, 2019). La combinaison des risques environnementaux et de la violence illustre la vulnérabilité extrême des populations migrantes face à des politiques qui privilégient la dissuasion sur la protection humaine.
+
+### Conclusion
+Ainsi, alors que que les routes terrestres désertiques montrent une prévalence de décès liés à l'exposition environnementale, les routes de jungle et de frontières terrestres combinent exposition environnementale et violence . Cette variation reflète les caractéristiques physiques distinctes de chaque corridor plutôt qu'une incohérence méthodologique. 
+
+De plus, l'intensification des politiques de dissuasion depuis les années 1990 a créé un mécanisme de déplacement systématique : les migrants évitent les points de passage traditionnels plus accessibles mais surveillés pour emprunter des routes isolées et dangereuses. Le traitement des migrants comme « corps jetables » reflète une acceptation institutionnelle de la mortalité comme
+coût de la dissuasion.
+
+
+# HYPOTHÈSES 
+Ces conclusions soutiennent la formulation d'hypothèses testables avec les données du Missing Migrants Project,
+notamment concernant (1) la corrélation temporelle entre l'intensification des politiques post-2018 et l'augmentation
+des décès, et (2) la prédominance des causes environnementales par rapport aux causes violentes sur le corridor
+mésoaméricain.
+
+  * **Hypothèse 1 :** L’intensification des politiques de dissuasion à partir de 2018 a provoqué une augmentation des décès de migrants et un déplacement des incidents vers des zones plus dangereuses.
+   * **Hypothèse 2 :** Les décès liés à des causes environnementales (chaleur extrême, déshydratation) deviennent proportionnellement plus fréquents que les décès liés à la violence sur la frontière Mexique-États-Unis après 2018.
+
+# COLLECTE DE DONNÉES 
+Comme mentionné plus haut, j'ai donc cherché (et trouvé) une base de données permettant de répondre à de telles interrogations. Celui de l'OIM m'a paru extrêmement complet : il se situe dans le site "Missing Migrants", une initiative mise en œuvre depuis 2014 par l’Organisation internationale pour les migrations (OIM) afin de recenser les décès et les disparitions de personnes en cours de migration vers une destination internationale. 
+
+J'ai voulu choisi les données qui m'intéressaient, d'abord dans le cadre de l'hypothèse 1, en sélectionnant la région étudiée (Amérique Centrale), le parcours migratoire (le passage de la frontière entre les Etats-Unis et le Mexique), et la période (de 2024 à 2025). J'aurais pu demander la date précise de l'"incident", mais cette variable est réservée aux recherches spécifiques de personnes disparues et ne s'applique pas le cadre de ce travail de recherche plus global. Dans le cadre de de l'hypothèse 2, je voulais ajouter la variable cause de la mort pour étudier la principale cause durant cette période et s'il y avait eu une évolution durant ces dernières années.
+
+Etant donné la taille de ce jeu de données si je le téléchargeais complet, cette première sélection de variables m'a permis de resserrer dès le départ mon champ d'étude de données. Cependant, le téléchargement des données n'était pas permise sur le site lorsque je sélectionnais mes variables ; j'ai donc téléchargé toutes les données (regroupant toutes les régions) sous forme d'un tableur xls et les ai nettoyées dans  **Open Refine**, l'outil numérique que j'ai eu l'occasion de présenter dans le cadre de ce cours. 
+
+# ANALYSE DE DONNÉES ET VISUALISATION
+### Le code des données
+Grâce à l'utilisation de **Open Refine**, j'ai pu sélectionner les variables suivantes : Region of Incident, Incident Date, Incident Year, Month, Number of Dead, Minimum Estimated Number of Missing, Total Number of Dead and Missing, Cause of Death, Country of Incident, Migration Route (triée pour ne laisser que le passage US-Mexique) et Location of Incident.
+
+J'ai importé ce tableau dans **R** pour pouvoir tester des visualisations graphiques qu'**Open Refine** ne permet pas (contrairement au package **ggplot2**), et avancer sur mes deux hypothèses. **Gemini** m'a aidée à régler les problèmes de codage occasionnels. 
+
+**Test de l'hypothèse 1** : 
+
+Le premier graphique est simple et représente simplement la mortalité migratoire annuelle, divisée entre pré-2018 et post-2018.
+
+```{r echo=FALSE, out.width="80%", fig.align="center", fig.cap="Figure 1. La tendance de mortalité à la frontière US-Mexique."}
+knitr::include_graphics("https://raw.githubusercontent.com/Noboe2025/Noboe2025.github.io/main/projet_session/images/Graph1.png")
+```
+
+
+Le deuxième graphique indique la concentration des décès sur la route US-Mexique par rapport à d'autres zones frontalières de la région. 
+  
+
+```{r echo=FALSE, out.width="80%", fig.align="center", fig.cap="Figure 2. Concentration des décès par route migratoire."}
+knitr::include_graphics("https://raw.githubusercontent.com/Noboe2025/Noboe2025.github.io/main/projet_session/images/graph2.png")
+```
+
+
+
+**Test de l'hypothèse 2** : 
+
+Le 3e graphique montre l'évolution proportionnelle des causes de décès à la frontière US - Mexique entre les périodes pré-2018 et post-2018, classées par les catégories causales suivantes : Accident/véhicule, Autres/non-spécifié, Environnemental/épuisement, et Noyade. 
+
+```{r echo=FALSE, out.width="80%", fig.align="center", fig.cap="Figure 3. Évolution proportionnelle des causes de décès."}
+knitr::include_graphics("https://raw.githubusercontent.com/Noboe2025/Noboe2025.github.io/main/projet_session/images/Graph3.png")
+```
+
+
+### Observations 
+Dans le graphique 1, je me suis heurtée à une baisse du taux de mortalité après 2021, cette baisse devenant drastique en 2023. Comme cette baisse n'est pas confirmée par l'analyse empirique qu'en ont fait les auteurices de la revue de littérature, j'ai vérifié sur le site de l'OIM d'où j'avais extrait les données ce qu'il en était ; le site indiquait également de telles baisses. En cherchant davantage, j'ai trouvé une explication de l'OIM indiquant les limites de son répertoire de morts : les corps disparus sont extrêmement difficiles à retrouver et a référencer, et ce processus prend beaucoup de temps. Ainsi, les données sont ajustées et améliorées d'année en année ; ces dernières années demeurent donc incomplètes par rapport au nombre réel de décès à la frontière (vraisemblablement en hausse). Comme je trouvais cette difficulté intéressante puisqu'elle reflète une réalité dure des disparitions aux frontières et des complexités relatives aux études de recherche à leur sujet, j'ai décidé de laisser ce graphique (à présent expliqué). 
+
+Dans le graphique 2, on voit que les décès à la frontière se concentrent davantage à la frontière entre les US et le Mexique, une zone extrême et très dangereuse, plutôt que dans les autres zones frontalières (le graphique montre une ligne de pointillés à l'année 2018). A partir de la période post-2018, principalement à partir de 2020, la concentration des décès à cette frontière est en hausse drastique.  
+
+Quant au troisième graphique, testant l'hypothèse 2, il indique une hausse des décès à cause d'accidents / de véhicules après 2018 ainsi qu'à cause des causes environnementales / de l'épuisement. Cette dernière cause reste très minoritaire par rapport aux autres sur le graphique, contrairement à ce que proposait mon hypothèse : cependant, la cause majoritaire sur le graphique est en réalité inconnue du fait de l'absence de données précises sur les morts à la frontière. La 2e cause principale est la noyade, et la dernière (largement minoritaire) sont les violences et abus.
+
+### Analyse et conclusion
+Suite à ces observations, je souhaite rappeler des limitations essentielles de cette étude : d'abord par les données manquantes de façon générale sur ce sujet, du fait de la difficulter à préciser les circoncstances des décès frontaliers des personnes migrantes entre le Mexique et les Etats-Unis ; ensuite par un manque d'autant plus flagrant de données pour les dernières années, comme mentionné plus haut dans les observations ; également du fait du manque de variables, notamment politiques, liées au changement gouvernemental aux Etats-Unis après 2018 (les hypothèses relatives à l'impact des politiques publiques américaines sont uniquement déduites de la littérature existante mais pas des graphiques ci-dessus).
+  
+Pour ce qui est des hypothèses, **H1** est confirmé du fait de l'augmentation drastique du nombre de morts après 2018 et particulièrement 2020/2021, mais cette confirmation reste limitée par le manque de données en 2024/2025. 
+
+L'hypothèse est donc davantage induite par la littérature que par les données de l'OIM actuellement disponibles, les études de scientifiques révèlant l'accélération des décès entre 2020 et 2022 et l'augmentation drastique au Nouveau-Mexique entre 2022 et 2023, suggèrant que les effets cumulatifs des politiques de Trump et les perturbations liées à la pandémie COVID-19 ont intensifié les risques migratoires. Plusieurs auteurs conceptualisent ces décès à travers le prisme de la nécropolitique de Mbembe , suggérant que les politiques frontalières opèrent selon une logique où certaines populations sont structurellement exposées à la mort . Le traitement des migrants comme « corps jetables » reflète une acceptation institutionnelle de la mortalité comme
+coût de la dissuasion.  
+
+Quant à **H2**, elle n'est pas confirmé par les graphiques présentés, établissant que les causes sont trop souvent inconnues pour établir avec certitude laquelle est la plus mortifère. La noyade reste d'après ce jeu de données de l'OIM la première cause identifiée des morts à cette frontière ; cependant, les causes de décès varient systématiquement selon le type de route empruntée. 
+Les traversées maritimes présentent une prédominance de noyades, tandis que les routes terrestres désertiques montrent une prévalence de décès liés à l'exposition environnementale. 
+
+La littérature explique une fois encore ici que l'intensification des politiques de dissuasion depuis les années 1990 a créé un mécanisme de déplacement systématique. Les personnes migrantes évitent les points de passage traditionnels plus accessibles mais surveillés pour emprunter des routes isolées et dangereuses . Ce déplacement explique pourquoi les décès par exposition environnementale représentent désormais une proportion significative : iels sont contraints de
+traverser des terrains où les conditions climatiques deviennent létales.que les routes de jungle et de frontières terrestres combinent exposition environnementale et violence. Cette variation reflète les caractéristiques physiques distinctes de chaque corridor. 
+
+En conclusion, l’intensification des politiques de dissuasion ont vraisemblablement conduit à un certain déplacement des incidents mortels sur la route migratoire Mexique-États-Unis après 2018, mais la prédominance des décès liés à l’exposition et à la déshydratation reste à confirmer au vu du faible nombre de données sur les causes exactes des décès. Le jeu de données de l'OIM ne permet toutefois à lui seul de répondre qu'en partie à la question de cette recherche au vu du faible nombre de données dans ces deux dernières années. D'autres recherches approfondies et précises, ainsi que des méthodes de mesure précises (si cela est possible), seraient à remobiliser dans les mois à venir pour poursuivre ce travail essentiel de recensement des décès à la frontière. 
+
+# DISCUSSION 
+Pour ce qui est des outils utilisés dans le cadre de ce travail, j'ai tout d'abord utilisé dans le cadre du cycle de recherche correspondant à : 
+--> Question 
+--> Théorie 
+--> Hypothèses 
+
+- J'ai donc utilisé **Gemini** pour m'aider à formuler une question de recherche pertinente, que j'ai ensuite reformulée et réajustée pour qu'elle corresponde davantage à ce que je souhaitais évaluer. 
+
+- **Elicit** m'a ensuite conseillé 11 sources bibliographiques récentes en rapport avec mon sujet d'intérêt, et m'a proposé deux hypothèses issues de cette question de recherche (qu'il a estimée "très bonne") et de ses recherches au sein de la littérature existante. 
+
+- **Google Scholar** m'a permis de vérifier l'existence de ces sources (on ne sait jamais) et de les lire rapidement, cet outil permettant souvent de trouver les PDF des lectures scientifiques. 
+
+- **Zotero** a été mon outil de choix pour répertorier ces sources et les mettre en format APA pour ma bibliographie finale qui va suivre. 
+
+
+Dans le cadre des étapes suivantes, 
+--> Méthodologie
+--> Résultats 
+--> Conclusion
+
+- J'ai utilisé **Open Refine** pour trier d'abord mon tableau, qui était bien trop large pour mon sujet d'étude, afin de retirer les colonnes inutiles dans le cadre de cette recherche et de limiter géographiquement les données à l'Amérique du Nord et l'Amérique Centrale ; 
+
+- Ensuite, j'ai exporté ce tableau dans **R**, qui m'a permis la visualisation graphique de ces données afin que je puisse les observer, les analyser et en tirer des conclusions. 
+
+- **Elicit** m'a à nouveau permis d'éclairer mes conclusions en revenant sur sa synthèse effectuée au début du cycle de recherche de la littérature existante. 
+
+Ces 6 outils sont très accessibles (enfin, R ne l'est qu'en suivant le cours dans lequel ce projet se situe, donc à relativiser : mais je n'y suis que depuis quelques mois, ceci dit) ; ils ont une large communauté d’utilisateurs et sont populaires dans leur domaine de prédilection (sauf Open Refine qui reste très limité par son apparence de tableur, son absence d'automatisation, son maximum de 100 000 lignes, son absence de visualisation graphique, etc), sont compatibles avec d’autres outils puisqu'ici je les ai tous utilisés de façon complémentaire et facile (ex le passage des sources d'Elicit à Zotero), sont transparents et réplicables (notamment R et Open Refine, qui a un historique des opérations exportables que j'ai ajouté dans mon Git Hub, accessible à toustes!). Enfin, ces outils sont gratuits (un point non négligeable), sauf Elicit qui est un logiciel payant et propriétaire. Je bénéficie toutefois d'un essai gratuit pour Gemini, ce qui m'avantage sans que je ne puisse le contester. Enfin, ils ont une capacité essentielle d’adaptabilité et de flexibilité, sachant que je les ai tous utilisés pour des travaux très différents au cours de ce semestre, qui se termine par le projet actuellement sous vos yeux. Mais peut-être n'est-ce pas la fin de mon utilisation de R... qui sait ? 
+
+
+# BIBLIOGRAPHIE
+*Macías-Madero, A., & Aguilar-Orihuela, L. (2025). Análisis teórico y propuesta metodológica para el estudio de la migración y la desaparición en México. Revista DYCS Victoria*
+
+*Obinna, D. N. (2025). Death in the borderlands: Necropolitics and migration‐related mortality at the US-Mexico border. Politics & Policy*
+
+*Sarmiento, É. (2023). El gobierno de Andrés Manuel López Obrador y la política antimigratoria. Politeja*
+
+*Sarmiento, É. (2021). A captura dos corpos descartáveis nas fronteiras. As migrações forçadas, as políticas estadunidenses e a América Latina. Monções*
+
+*Passarelli-Araújo, H. (2025). Deaths across borders: Trends and challenges in estimating mortality among undocumented migrants on Latin American routes. Journal of Epidemiology and Population Health*
+
+*Hernandez, J. R., & Edgar, H. J. H. (2024). Migrant deaths in New Mexico: What is known; what is unknown. Journal on Migration and Human Security*
+
+*Marroni, M. da G., & Meneses, G. (2006). El fin del sueño americano. Mujeres migrantes muertas en la frontera México-Estados Unidos*
+
+*Sarrut, M. (2025). Une frontière aux multiples visages. Multitudes*
+
+*Sarrut, M., Echeverri Zuluaga, J., & Valenzuela Amaya, S. (2023). Briser le mythe de la « jungle qui tue » : Analyse du rôle des intermédiaires dans la traversée du Darién (frontière Colombie-Panama). Revue Européenne des Migrations Internationales*
+
+*Villalobos, O., & Ramírez Arellano, R. (2019). Gubernamentalidad necropolítica y resistencia al destino de la muerte en el sistema migratorio mesoamericano*
+
+*Cárdenas-Rodríguez, R., Vázquez, B. D., & Casado, R. (2012). Rutas de las migraciones femeninas. De México a Estados Unidos.*
+
+
+
+
