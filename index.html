@@ -1,150 +1,375 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Le site de Noémie</title>
-
-  <!-- TailwindCSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
-  <!-- Alpine.js for interactive tabs -->
-  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-<style>
-.fade-in{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;}
-.fade-in.appear{opacity:1;transform:translateY(0);}
-</style>
+    <title>Noémie Boespflug | Développement International</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdn.tailwindcss.com" />
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
 </head>
+<body class="bg-gray-50 font-sans antialiased">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full z-10">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <div>
+                        <a href="#" class="flex items-center py-4 px-2">
+                            <span class="font-semibold text-gray-900 text-lg">NOÉMIE BOESPFLUG</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="#about" class="py-4 px-2 text-gray-700 hover:text-indigo-600 transition duration-300">À propos</a>
+                    <a href="#education" class="py-4 px-2 text-gray-700 hover:text-indigo-600 transition duration-300">Formation</a>
+                    <a href="#experience" class="py-4 px-2 text-gray-700 hover:text-indigo-600 transition duration-300">Expérience</a>
+                    <a href="#projects" class="py-4 px-2 text-gray-700 hover:text-indigo-600 transition duration-300">Projets</a>
+                    <a href="#contact" class="py-4 px-2 text-gray-700 hover:text-indigo-600 transition duration-300">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="outline-none mobile-menu-button">
+                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="hidden mobile-menu">
+            <ul class="">
+                <li><a href="#about" class="block text-sm px-2 py-4 hover:bg-indigo-100 transition duration-300">À propos</a></li>
+                <li><a href="#education" class="block text-sm px-2 py-4 hover:bg-indigo-100 transition duration-300">Formation</a></li>
+                <li><a href="#experience" class="block text-sm px-2 py-4 hover:bg-indigo-100 transition duration-300">Expérience</a></li>
+                <li><a href="#projects" class="block text-sm px-2 py-4 hover:bg-indigo-100 transition duration-300">Projets</a></li>
+                <li><a href="#contact" class="block text-sm px-2 py-4 hover:bg-indigo-100 transition duration-300">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<body x-data="{dark:false}" :class="dark ? 'dark-mode' : ''" class="bg-gray-100 text-gray-800 font-sans">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-32 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="flex justify-center mb-8">
+                <img src="images/moi.jpg" alt="Noémie Boespflug" class="rounded-full h-48 w-48 object-cover border-4 border-white shadow-lg">
+            </div>
+            <h1 class="text-5xl font-bold mb-4">NOÉMIE BOESPFLUG</h1>
+            <p class="text-xl mb-8">Étudiante en maîtrise de développement international</p>
+            <p class="max-w-2xl mx-auto text-lg">
+                Je combine expertise en analyse géopolitique et juridique, gestion de projets humanitaires et recherche appliquée en sciences sociales.
+            </p>
+            <div class="mt-8">
+                <a href="#contact" class="bg-white text-indigo-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300 mr-4">Me contacter</a>
+                <a href="cv/CV_BOESPFLUG_DEC2025.pdf" target="_blank" class="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-indigo-600 transition duration-300">Voir mon CV</a>
+            </div>
+        </div>
+    </section>
 
-<!-- HEADER -->
-<header class="w-full bg-white shadow-md sticky top-0 z-50">
-  <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-    <div class="flex items-center gap-4">
-      <img src="images/moi.jpg" class="w-16 h-16 rounded-full shadow" alt="Photo de Noémie" />
-      <div>
-        <h1 class="text-2xl font-bold tracking-wide">NOÉMIE BOESPFLUG</h1>
-        <p class="text-sm text-gray-500 -mt-1">Étudiante en dernière année à la recherche d'un stage · Université Laval</p>
-      </div>
-    </div>
-  </div>
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">À propos de moi</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p class="text-lg mb-6">
+                        Étudiante en maîtrise de développement international (Université Laval), je combine expertise en analyse géopolitique et juridique, gestion de projets humanitaires et recherche appliquée en sciences sociales.
+                    </p>
+                    <p class="text-lg mb-6">
+                        Ayant déjà une expérience en contexte multiculturel et en situation de crise, ainsi qu'en gestion de projet et en synthèse stratégique, je souhaite mettre mes compétences au service d'engagements concrets pour les droits humains dans le cadre d'un stage de plusieurs mois.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.linkedin.com/in/noémie-boespflug-399091215/" class="text-indigo-600 hover:text-indigo-800">
+                            <i data-feather="linkedin"></i>
+                        </a>
+                        <a href="https://github.com/Noboe2025" class="text-indigo-600 hover:text-indigo-800">
+                            <i data-feather="github"></i>
+                        </a>
+                        <a href="mailto:noemieboespflug@gmail.com" class="text-indigo-600 hover:text-indigo-800">
+                            <i data-feather="mail"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4">Compétences clés</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i data-feather="check-circle" class="text-green-500 mr-2"></i>
+                            <span>Analyse stratégique et géopolitique</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check-circle" class="text-green-500 mr-2"></i>
+                            <span>Expérience professionnelle à l'international</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check-circle" class="text-green-500 mr-2"></i>
+                            <span>Travail de terrain en situation d'urgence</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check-circle" class="text-green-500 mr-2"></i>
+                            <span>Gestion d'équipe et responsabilité</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check-circle" class="text-green-500 mr-2"></i>
+                            <span>Projets culturels et humanitaires</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- NAVIGATION AVEC ONGLET OUVRABLES -->
-  <div class="flex justify-end p-4"><button @click="dark=!dark" class="px-3 py-1 border rounded">Mode sombre</button></div>
-<nav class="bg-gray-900 text-white" x-data="{ openTab: 'about' }">
-    <ul class="max-w-5xl mx-auto flex flex-wrap px-6 py-2 gap-4 text-sm">
-      <li><button @click="openTab='about'"     class="px-3 py-1 rounded hover:bg-gray-700" :class="{'bg-gray-700':openTab==='about'}">À propos</button></li>
-      <li><button @click="openTab='formation'" class="px-3 py-1 rounded hover:bg-gray-700" :class="{'bg-gray-700':openTab==='formation'}">Formation</button></li>
-      <li><button @click="openTab='xp'"        class="px-3 py-1 rounded hover:bg-gray-700" :class="{'bg-gray-700':openTab==='xp'}">Expérience</button></li>
-      <li><button @click="openTab='cv'"        class="px-3 py-1 rounded hover:bg-gray-700" :class="{'bg-gray-700':openTab==='cv'}">Mon CV</button></li>
-      <li><button @click="openTab='projets'"   class="px-3 py-1 rounded hover:bg-gray-700" :class="{'bg-gray-700':openTab==='projets'}">Mes projets</button></li>
-      <li><button @click="openTab='asso'"      class="px-3 py-1 rounded hover:bg-gray-700" :class="{'bg-gray-700':openTab==='asso'}">Engagements</button></li>
-      <li><button @click="openTab='contact'"   class="px-3 py-1 rounded hover:bg-gray-700" :class="{'bg-gray-700':openTab==='contact'}">Contact</button></li>
-    </ul>
-  </nav>
-</header>
+    <!-- Education Section -->
+    <section id="education" class="py-20 px-4 bg-gray-100">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Formation académique</h2>
+            <div class="space-y-8">
+                <!-- Education Item 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-semibold">Double diplôme avec maîtrise à l'Ecole Supérieure des Relations Internationales</h3>
+                            <p class="text-gray-600">Université Laval (mineure "Développement International")</p>
+                        </div>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium">2025-2026</span>
+                    </div>
+                </div>
+                
+                <!-- Education Item 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-semibold">Master « Politique internationale »</h3>
+                            <p class="text-gray-600">Sciences Po Bordeaux (Bac +5)</p>
+                        </div>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium">2024-2025</span>
+                    </div>
+                </div>
+                
+                <!-- Education Item 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-semibold">Licence 3 de Droit</h3>
+                            <p class="text-gray-600">Parcours Droit International et Européen (faculté de Bordeaux)</p>
+                        </div>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium">2024-2025</span>
+                    </div>
+                </div>
+                
+                <!-- Education Item 4 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-semibold">Premier cycle de SPB / B.A. in political and social sciences</h3>
+                            <p class="text-gray-600">Cursus Général, mention Bien</p>
+                        </div>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium">2023-2024</span>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-700">
+                            <strong>Mémoire</strong> sur "Le voile islamique et ses symboliques : l'impact de la Révolution de 1979 sur le regard des Femmes iraniennes", encadré par Mme. Catherine HOEFFLER
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Education Item 5 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-semibold">Mobilité internationale (Erasmus)</h3>
+                            <p class="text-gray-600">Bogazici University, Istanbul, Turquie</p>
+                        </div>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium">2022-2023</span>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-700">
+                            Faculty of Economics and Administrative Sciences, Department of Political Science and International Relations, validé avec 16,80 de moyenne (GPA de 3,2)
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Education Item 6 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-semibold">Baccalauréat mention Très Bien</h3>
+                            <p class="text-gray-600">Humanités, Littérature et Philosophie / Histoire, Géopolitique et Sciences Politiques</p>
+                        </div>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium">2019-2022</span>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-700">
+                            Option Européenne Allemand / Option Langues Anciennes / Option Droit et Grands Enjeux Contemporains
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- CONTENU PRINCIPAL -->
-<main class="max-w-5xl mx-auto px-6 py-10 space-y-16" x-data="{ openTab:'about' }" x-init="openTab='about'">
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Expérience professionnelle</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Experience Item 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold">Auxiliaire de recherche</h3>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium">2025</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Chaire de recherche en Études Nordiques de l'Université Laval sur la population Inuit Nunavik (Québec, Canada)
+                    </p>
+                </div>
+                
+                <!-- Experience Item 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold">Stage à la Maison de l'Europe</h3>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium">2024</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Lyon (France) : mémoire sur l'histoire du Droit Européen des Etrangers, vulgarisation pour l'éducation à ce sujet en collèges et lycées
+                    </p>
+                </div>
+                
+                <!-- Experience Item 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold">Stage en Cabinet d'avocats pour les étrangers</h3>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium">2024</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Lyon (France) : entretiens avec des demandeurs d'asile, préparation des procès et suivi des dossiers
+                    </p>
+                </div>
+                
+                <!-- Experience Item 4 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold">Stage à la Ligue des Droits de l'Homme</h3>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium">2024</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Paris, siège (France) : juriste, permanence téléphonique juridique et suivi des dossiers d'atteinte aux droits humains
+                    </p>
+                </div>
+                
+                <!-- Experience Item 5 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold">Stage à Le Centre, Cotonou (Bénin)</h3>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium">2023</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Centre culturel, chargée de bilan des actions culturelles et artistiques de promotion de l'éducation populaire et sensibilisation locale au patrimoine du Royaume du Danxomé
+                    </p>
+                </div>
+                
+                <!-- Experience Item 6 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold">Stage à PCC Hand-in-Hand, Nkoranza (Ghana)</h3>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium">2023</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Communication d'ONG humanitaire d'aide aux orphelins souffrant d'un handicap mental
+                    </p>
+                </div>
+                
+                <!-- Experience Item 7 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold">Stage à Utopia 56</h3>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium">2022</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">
+                        Grande-Synthe, Calais (France) : Aide d'urgence humanitaire dans un camp de personnes exilées irrégulières vivant dans des quartiers informels insalubres le long de la frontière franco-britannique
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- ABOUT -->
-  <section class="fade-in" x-show="openTab==='about'" x-transition>
-    <h2 class="text-3xl font-bold mb-4">À propos de moi</h2>
-    <p class="leading-7">
-      <strong>Étudiante en maîtrise de développement international</strong> (Université Laval), je combine expertise en 
-      analyse géopolitique et juridique, gestion de projets humanitaires et recherche appliquée. Ayant déjà une 
-      expérience en contexte multiculturel et en situation de crise, je souhaite mettre mes compétences au service 
-      d’engagements concrets pour les droits humains dans le cadre d’un <strong>stage de plusieurs mois</strong>.
-    </p>
-  </section>
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-4 bg-gray-100">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Mes Projets</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Project Item 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="mb-4">
+                        <img src="projet_session/projet.png" alt="Projet de session" class="w-full h-48 object-cover rounded-lg">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Cours d'outils numériques (POL-6078)</h3>
+                    <p class="text-gray-700 mb-4">
+                        Cliquez sur le lien ci-dessous pour explorer le contenu de ce projet.
+                    </p>
+                    <a href="projet_session/projet.html" target="_blank" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition duration-300">
+                        Voir le projet complet
+                    </a>
+                </div>
+                
+                <!-- Project Item 2 - CV -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="mb-4">
+                        <img src="cv/CV_BOESPFLUG.png" alt="CV" class="w-full h-48 object-cover rounded-lg">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Mon CV</h3>
+                    <p class="text-gray-700 mb-4">
+                        N'hésitez pas à regarder mon CV plus en détail !
+                    </p>
+                    <a href="cv/CV_BOESPFLUG_DEC2025.pdf" target="_blank" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition duration-300">
+                        Voir le CV en PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- FORMATION -->
-  <section class="fade-in" x-show="openTab==='formation'" x-transition>
-    <h2 class="text-3xl font-bold mb-6">Formation académique</h2>
-    <div class="space-y-4 leading-7">
-      <p><strong>2025–2026 :</strong> Double diplôme Université Laval / École Supérieure des Relations Internationales.</p>
-      <p><strong>2024–2025 :</strong> Master « Politique internationale » – Sciences Po Bordeaux + Licence 3 de Droit.</p>
-      <p><strong>2023–2024 :</strong> Premier cycle SPB – Mémoire sur les symboliques du voile iranien.</p>
-      <p><strong>2022–2023 :</strong> Erasmus – Bogazici University, Istanbul (16,8 / GPA 3.2).</p>
-      <p><strong>2019–2022 :</strong> Baccalauréat mention Très Bien – spécialités HLP & HGGSP.</p>
-    </div>
-  </section>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Me joindre</h2>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-2xl mx-auto">
+                <p class="text-lg text-center mb-8">
+                    N'hésitez pas à me contacter si mon profil peut vous intéresser pour un travail de terrain solidaire, humanitaire, de gouvernance ou de recherche.
+                </p>
+                <div class="flex flex-col items-center">
+                    <a href="mailto:noemieboespflug@gmail.com" class="bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-700 transition duration-300 mb-4">
+                        noemieboespflug@gmail.com
+                    </a>
+                    <div class="flex space-x-6">
+                        <a href="https://www.linkedin.com/in/noémie-boespflug-399091215/" class="text-indigo-600 hover:text-indigo-800">
+                            <i data-feather="linkedin" class="w-6 h-6"></i>
+                        </a>
+                        <a href="https://github.com/Noboe2025" class="text-indigo-600 hover:text-indigo-800">
+                            <i data-feather="github" class="w-6 h-6"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?viewas=100000686899395&id=100069563122392" class="text-indigo-600 hover:text-indigo-800">
+                            <i data-feather="facebook" class="w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- EXPÉRIENCE -->
-  <section class="fade-in" x-show="openTab==='xp'" x-transition>
-    <h2 class="text-3xl font-bold mb-6">Expérience professionnelle</h2>
-    <div class="space-y-4 leading-7">
-      <p><strong>2025 :</strong> Auxiliaire de recherche – Chaire d'Études Nordiques (Université Laval).</p>
-      <p><strong>2024 :</strong> Stages : Maison de l’Europe (Lyon), Cabinet d’avocats étrangers (Lyon), Ligue des Droits de l’Homme (Paris).</p>
-      <p><strong>2023 :</strong> Stages au Bénin (centre culturel) et Ghana (ONG humanitaire).</p>
-      <p><strong>2022 :</strong> Utopia 56 – aide humanitaire d’urgence à Calais.</p>
-    </div>
-  </section>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center">
+                <p>&copy; 2023 Noémie Boespflug. Tous droits réservés.</p>
+                <p class="mt-2">Québec, QC, Canada</p>
+            </div>
+        </div>
+    </footer>
 
-  <!-- CV -->
-  <section class="fade-in" x-show="openTab==='cv'" x-transition>
-    <h2 class="text-3xl font-bold mb-6">Mon CV</h2>
-    <a href="cv/CV_BOESPFLUG_DEC2025.pdf" target="_blank" class="block w-64 shadow-lg hover:scale-105 transition">
-      <img src="cv/CV_BOESPFLUG.png" alt="Aperçu du CV" class="rounded" />
-    </a>
-    <a href="cv/CV_BOESPFLUG_DEC2025.pdf" target="_blank" class="mt-4 inline-block bg-gray-900 text-white px-4 py-2 rounded shadow">Voir le PDF</a>
-  </section>
-
-  <!-- PROJETS -->
-  <section class="fade-in" x-show="openTab==='projets'" x-transition>
-    <h2 class="text-3xl font-bold mb-6">Mes Projets</h2>
-    <a href="projet_session/projet.html" target="_blank" class="block w-72 shadow-lg hover:scale-105 transition">
-      <img src="projet_session/projet.png" alt="Projet" class="rounded" />
-    </a>
-  </section>
-
-  <!-- ENGAGEMENTS -->
-  <section class="fade-in" x-show="openTab==='asso'" x-transition>
-    <h2 class="text-3xl font-bold mb-6">Engagements associatifs et solidaires</h2>
-    <div class="leading-7 space-y-4">
-      <p><strong>2025 :</strong> Ligue des Droits de l’Homme (Bordeaux), Collectif MNA 33.</p>
-      <p><strong>2024 :</strong> Formation MSF – coordination féministe.</p>
-      <p><strong>2021–2024 :</strong> Co-présidence associations d’arts et de musique.</p>
-      <p><strong>2023 :</strong> Aide aux victimes du séisme Turquie/Syrie.</p>
-      <p><strong>2022 :</strong> Maraude auprès de personnes sans domicile fixe.</p>
-      <p><strong>2018–2020 :</strong> Amnesty International (antenne Lycée).</p>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="fade-in" x-show="openTab==='contact'" x-transition>
-    <h2 class="text-3xl font-bold mb-4">Me joindre</h2>
-    <p class="mb-4">Si mon profil vous intéresse pour un travail humanitaire, solidaire, de gouvernance ou de recherche :</p>
-    <a href="mailto:noemieboespflug@gmail.com" class="inline-block bg-blue-600 text-white px-5 py-3 rounded shadow hover:bg-blue-700">noemieboespflug@gmail.com</a>
-  </section>
-</main>
-
-<!-- FOOTER -->
-<footer class="bg-gray-900 text-gray-300 py-6 mt-10">
-  <div class="max-w-5xl mx-auto px-6 text-center text-sm">
-    <p>&copy; 2025 · Site de Noémie Boespflug</p>
-    <div class="flex gap-4 justify-center mt-3 text-lg">
-      <a href="https://github.com/Noboe2025" class="hover:text-white"><i class="fab fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/noémie-boespflug-399091215" class="hover:text-white"><i class="fab fa-linkedin"></i></a>
-      <a href="mailto:noemieboespflug@gmail.com" class="hover:text-white"><i class="fa fa-envelope"></i></a>
-    </div>
-  </div>
-</footer>
-
-<script>
-const faders=document.querySelectorAll('.fade-in');
-const appearOptions={threshold:0.2};
-const appearOnScroll=new IntersectionObserver((entries)=>{
- entries.forEach(entry=>{
-   if(entry.isIntersecting){ entry.target.classList.add('appear'); }
- });
-},appearOptions);
-faders.forEach(el=>appearOnScroll.observe(el));
-</script>
+    <script src="script.js"></script>
+    <script>
+        feather.replace();
+    </script>
 </body>
 </html>
