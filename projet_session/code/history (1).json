@@ -1,0 +1,148 @@
+[
+  {
+    "op": "core/column-removal",
+    "columnName": "Information Source",
+    "description": "Supprimer la colonne Information Source"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "Source Quality",
+    "description": "Supprimer la colonne Source Quality"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "URL",
+    "description": "Supprimer la colonne URL"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "Number of Children",
+    "description": "Supprimer la colonne Number of Children"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "Number of Males",
+    "description": "Supprimer la colonne Number of Males"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "Number of Females",
+    "description": "Supprimer la colonne Number of Females"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "Number of Survivors",
+    "description": "Supprimer la colonne Number of Survivors"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "Incident Type",
+    "description": "Supprimer la colonne Incident Type"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "Incident ID",
+    "description": "Supprimer la colonne Incident ID"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "Main ID",
+    "description": "Supprimer la colonne Main ID"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "Country of Origin",
+    "description": "Supprimer la colonne Country of Origin"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "Region of Origin",
+    "description": "Supprimer la colonne Region of Origin"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "Coordinates",
+    "description": "Supprimer la colonne Coordinates"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "UNSD Geographical Grouping",
+    "description": "Supprimer la colonne UNSD Geographical Grouping"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "text",
+          "name": "Region of Incident",
+          "columnName": "Region of Incident",
+          "query": "Central America",
+          "mode": "text",
+          "caseSensitive": false,
+          "invert": false
+        },
+        {
+          "type": "text",
+          "name": "Migration Route",
+          "columnName": "Migration Route",
+          "query": "US-Mexico",
+          "mode": "text",
+          "caseSensitive": false,
+          "invert": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "Incident Date",
+    "expression": "value.toDate()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Transformer le texte sur les cellules de la colonne Incident Date à laide de lexpression value.toDate()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "text",
+          "name": "Region of Incident",
+          "columnName": "Region of Incident",
+          "query": "Central America",
+          "mode": "text",
+          "caseSensitive": false,
+          "invert": false
+        },
+        {
+          "type": "text",
+          "name": "Migration Route",
+          "columnName": "Migration Route",
+          "query": "US-Mexico",
+          "mode": "text",
+          "caseSensitive": false,
+          "invert": false
+        },
+        {
+          "type": "timerange",
+          "name": "Incident Date",
+          "expression": "value",
+          "columnName": "Incident Date",
+          "from": 1394496000000,
+          "to": 1,
+          "selectTime": true,
+          "selectNonTime": true,
+          "selectBlank": true,
+          "selectError": true
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "Incident Year",
+    "expression": "value.toDate()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Transformer le texte sur les cellules de la colonne Incident Year à laide de lexpression value.toDate()"
+  }
+]
